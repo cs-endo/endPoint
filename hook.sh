@@ -1,5 +1,4 @@
 #!/bin/bash
-set -u
 
 # ------ Export file location
 export endPoint=$(dirname -- "$(readlink -f -- "$BASH_SOURCE")")
