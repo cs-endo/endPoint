@@ -1,5 +1,5 @@
 #!/bin/bash
-set -Eeuo pipefail; shopt -s expand_aliases
+set -Eeuo pipefail
 
 [[ -z "$@" ]] && adCommand="touch" || adCommand="$@"
 echo "Running command [$adCommand]"
