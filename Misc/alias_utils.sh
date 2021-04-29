@@ -12,6 +12,12 @@ function clean {
 }
 
 # ---------------------------------
+# Utilities
+alias got="git status"
+alias gut="git diff"
+alias gitd="git diff --cached"
+
+# ---------------------------------
 # System
 alias begin="startx"
 alias end="shutdown now"

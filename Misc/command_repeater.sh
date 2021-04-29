@@ -7,7 +7,5 @@ echo "Running command [$adCommand]"
 while :; do
 	read -p ' - ' adInput
 
-	[[ -z "$adInput" ]] && break
-
 	$adCommand "$adInput" || echo "Invalid Command"
 done
