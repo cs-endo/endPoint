@@ -24,6 +24,7 @@ alias end="shutdown now"
 
 function monitor {
         xrandr --output VGA1 --off
+	sleep 1
         if [[ -n $(xrandr | grep "VGA1 connected") ]]; then
                 xrandr --output VGA1 --auto --right-of LVDS1; ~/.fehbg
         fi
@@ -32,6 +33,10 @@ function monitor {
 # ---------------------------------
 # Misc
 alias weather="curl wttr.in?format=v2; read"
+
+function stocks {
+	curl rate.sx/$1
+}
 
 # ---------------------------------
 # Music
