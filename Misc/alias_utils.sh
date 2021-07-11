@@ -19,9 +19,9 @@ function clean {
 
 # ---------------------------------
 # Utilities
-alias got="git status"
-alias gut="git diff"
-alias gitd="git diff --cached"
+alias gits="git status"
+alias gitd="git diff"
+alias gitdc="git diff --cached"
 alias archive="7z a -p -mhe=on archive *"
 
 # ---------------------------------

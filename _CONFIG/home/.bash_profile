@@ -12,4 +12,4 @@ export PS1;
 
 LESSHISTFILE=/dev/null
 
-# source "{}/wendPoint/hook.sh"
+# source "[INSERT ENDPOINT DIR]/endPoint/hook.sh"
