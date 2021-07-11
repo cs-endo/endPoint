@@ -1,11 +1,21 @@
 #!/bin/bash
-set -Eeuo pipefail
 
-[[ -z "$@" ]] && adCommand="touch" || adCommand="$@"
-echo "Running command [$adCommand]"
+# Set environment for script to run - "set -u" causes issues
+shopt -s expand_aliases
+set -Eeo pipefail
+
+# Find endPoint folder and enable aliases
+selfPwd=$(dirname -- "$(readlink -f -- "$BASH_SOURCE")")
+source "$selfPwd/../hook.sh"
+
+# If no arguments given, use "touch"
+method=${@:-"touch"}
+echo "Running command [$method]"
 
 while :; do
-	read -p ' - ' adInput
+	read -p ' - ' arguments
 
-	$adCommand "$adInput" || echo "Invalid Command"
+	# Perhaps not the best solution
+	# Just executes e.g. touch 'FILE NAME AS ONE ITEM'
+	eval $method "'"$arguments"'" || echo "Command failed"
 done
