@@ -4,6 +4,12 @@
 # Terminal
 alias refresh="source $HOME/.bash_profile"
 alias la="ls -lah"
+alias ra="ranger"
+
+function cmkdir {
+	[[ -n $1 ]] || return
+	mkdir $1; cd $1	
+}
 
 function clean {
 	[[ -n $1 ]] || return
@@ -16,6 +22,7 @@ function clean {
 alias got="git status"
 alias gut="git diff"
 alias gitd="git diff --cached"
+alias archive="7z a -p -mhe=on archive *"
 
 # ---------------------------------
 # System
@@ -28,6 +35,10 @@ function monitor {
         if [[ -n $(xrandr | grep "VGA1 connected") ]]; then
                 xrandr --output VGA1 --auto --right-of LVDS1; ~/.fehbg
         fi
+}
+
+function get_power {
+	echo $( printf %02d $(cat /sys/class/power_supply/BAT0/capacity) )
 }
 
 # ---------------------------------
