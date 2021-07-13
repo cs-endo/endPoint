@@ -58,7 +58,7 @@ function mp {
                 mpd &> /dev/null
                 mpc update
         fi
-        if [[ $1 -eq 1 ]]; then
+        if [[ -n $1 ]]; then
                 mpd --kill &> /dev/null
                 return
         fi
