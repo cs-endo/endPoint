@@ -15,7 +15,5 @@ echo "Running command [$method]"
 while :; do
 	read -p ' - ' arguments
 
-	# Perhaps not the best solution
-	# Just executes e.g. touch 'FILE NAME AS ONE ITEM'
-	eval $method "'"$arguments"'" || echo "Command failed"
+	$method "$arguments" || echo "Command failed"
 done

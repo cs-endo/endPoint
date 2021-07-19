@@ -1,7 +1,6 @@
 #!/bin/bash
 
 function ytdlConf {
-	set -x
 	argOut="$1"	# a V v v360 v480 v720...
 	argFile="$2"	# p=index, t=title, u=date, x=ext
 			# $@ = additional parameters + URL
@@ -20,7 +19,7 @@ function ytdlConf {
 
 	outType="${argOut::1}"
 	outRes="${argOut:1}"
-	[[ -z $outRes ]] || outRes="-f best[height<=?$outRes]+bestaudio/best"
+	[[ -z $outRes ]] || outRes="-f best[height=$outRes]+bestaudio/best"
 
 	[[ -z $1 ]] && base="echo youtube-dl -i" || base="youtube-dl -i"
 	$base ${outputs[$outType]} ${name_forms[$argFile]} $outRes $@
@@ -33,5 +32,3 @@ function youtube480GT {	ytdlConf v720 ptx $@; }
 function youtubeA {	ytdlConf a tx $@; }
 
 function twitch { 	ytdlConf v360 utx $@ || ytdlConf V utx $@; }
-
-youtube720 $@
