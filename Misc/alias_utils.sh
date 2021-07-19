@@ -8,7 +8,7 @@ alias ra="ranger"
 
 function cmkdir {
 	[[ -n $1 ]] || return
-	mkdir $1; cd $1	
+	mkdir $1; cd $1
 }
 
 function clean {
@@ -23,6 +23,14 @@ alias gits="git status"
 alias gitd="git diff"
 alias gitdc="git diff --cached"
 alias archive="7z a -p -mhe=on archive *"
+
+function sortSSH {
+	# If a key needs a password, echo manual command
+	eval "$(ssh-agent -s)"
+	grep "IdentityFile" "$HOME/.ssh/config" | cut -d'~' -f2 | while read line
+	  do ssh-add "$HOME$line" || echo " FAILED - ssh-add \"$HOME$line\""
+	done
+}
 
 # ---------------------------------
 # System
