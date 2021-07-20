@@ -11,11 +11,13 @@ function cmkdir {
 	mkdir $1; cd $1
 }
 
-function clean {
+function quiet {
 	[[ -n $1 ]] || return
 	$@ &> /dev/null &
 	disown
 }
+
+alias ad="$endPoint/Misc/command_repeater.sh"
 
 # ---------------------------------
 # Utilities
