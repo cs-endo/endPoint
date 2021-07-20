@@ -2,9 +2,9 @@
 
 # ---------------------------------
 # Terminal
-alias refresh="source $HOME/.bash_profile"
-alias la="ls -lah"
-alias ra="ranger"
+function refresh { source $HOME/.bash_profile; }
+function la { ls -lah; }
+function ra { ranger; }
 
 function cmkdir {
 	[[ -n $1 ]] || return
@@ -19,10 +19,19 @@ function clean {
 
 # ---------------------------------
 # Utilities
-alias gits="git status"
-alias gitd="git diff"
-alias gitdc="git diff --cached"
-alias archive="7z a -p -mhe=on archive *"
+function gits { git status; }
+function gitd { git diff; }
+function gitdc { git diff --cached; }
+function gitc {
+	# $1 = message (put between "")
+	git commit -m "$1"
+}
+
+function archive {
+	# $1 = archive title
+	# TODO Make this auto set to the date
+	7z a -p -mhe=on $1 *
+}
 
 function sortSSH {
 	# If a key needs a password, echo manual command
@@ -34,6 +43,8 @@ function sortSSH {
 
 # ---------------------------------
 # System
+
+# Kept as aliases - will likely not be repeated
 alias begin="startx"
 alias end="shutdown now"
 
@@ -51,15 +62,12 @@ function get_power {
 
 # ---------------------------------
 # Misc
-alias weather="curl wttr.in?format=v2; read"
-
-function stocks {
-	curl rate.sx/$1
-}
+function weather { curl wttr.in?format=v2; }
+function stocks { curl rate.sx/$1; }
 
 # ---------------------------------
 # Music
-alias pul="pulsemixer"
+function pul { pulsemixer; }
 
 function mp {
         if [[ -z $(ps ch -C mpd) ]]; then
