@@ -2,7 +2,7 @@
 
 function ytdlConf {
 	argAV="$1"	# $1: [a/v/V][###] - e.g. v480 for 480p video
-	argFname="$2"	# $2: p=index, t=title, u=date, x=ext
+	argFName="$2"	# $2: p=index, t=title, u=date, x=ext
 	shift 2		# $@: additional parameters + URL
 
 	declare -A dictOutFormat=( \
@@ -22,7 +22,9 @@ function ytdlConf {
 	[[ -z $avRes ]] || avInpFormat="-f best[height=$avRes]+bestaudio/best"
 
 	# If no URL given, print the command otherwise executed
-	baseCom="youtube-dl -i"
+	#  -i		Ignore errors (useful for imperfect playlists)
+	#  --http-...	Workaround for issue with speed dropping to 50kb
+	baseCom="youtube-dl -i --http-chunk-size 15M"
 	[[ -z $1 ]] && baseCom="echo $baseCom"
 	$baseCom $avInpFormat ${dictOutFormat[$avType]} ${dictFileName[$argFName]} $@
 }
