@@ -2,7 +2,7 @@
 
 # ---------------------------------
 # Terminal
-function refresh { source $HOME/.bashrc; }
+function refresh { source $HOME/.bash_profile; }
 function la { ls -lah; }
 function ra { ranger; }
 

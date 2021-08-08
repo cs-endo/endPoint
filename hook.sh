@@ -1,5 +1,6 @@
 #!/bin/bash
-# Add to .bashrc - source "[INSERT ENDPOINT DIR]/endPoint/hook.sh"
+# If .bash_profile is not from endpoint, add the following to it
+#  source "[endPoint's directory]/hook.sh"
 
 # ------ Export file location
 export endPoint=$(dirname -- "$(readlink -f -- "$BASH_SOURCE")")

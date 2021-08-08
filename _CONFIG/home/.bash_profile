@@ -14,4 +14,4 @@ export LESSHISTFILE=/dev/null
 export HISTFILE="$HOME/.temp/bash_history"
 export VIMINIT="source $HOME/.config/vimrc"
 
-source "$HOME/.bashrc"
+source $(dirname -- "$(readlink -f -- "$BASH_SOURCE")")/../../hook.sh
