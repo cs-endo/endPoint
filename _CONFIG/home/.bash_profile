@@ -10,7 +10,7 @@ PS1+="\[${colWhi}\]\n║ \[${colGray}\]\w";
 PS1+="\[${colWhi}\]\n╚═══[ \[${colGray}\]";
 export PS1;
 
-LESSHISTFILE=/dev/null
-HISTFILE="$HOME/.temp/bash_history"
-VIMINIT="source $HOME/.config/vimrc"
+export LESSHISTFILE=/dev/null
+export HISTFILE="$HOME/.temp/bash_history"
+export VIMINIT="source $HOME/.config/vimrc"
 
