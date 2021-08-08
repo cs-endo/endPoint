@@ -11,3 +11,6 @@ PS1+="\[${colWhi}\]\n╚═══[ \[${colGray}\]";
 export PS1;
 
 LESSHISTFILE=/dev/null
+HISTFILE="$HOME/.temp/bash_history"
+VIMINIT="source $HOME/.config/vimrc"
+

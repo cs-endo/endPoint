@@ -24,13 +24,25 @@ function unique {
 }
 
 function link_config {
+	# $1 = 'x' to enable x file linking
+	# $1 = 'v' to enable vim file linking (temp)
 	cd $HOME
 	for conf in "$endPoint/_CONFIG/home/".*; do
-		[[ -d "$conf" ]] || { ln -s "$conf" && echo "ln: successfully linked $conf"; }
+		# Ignore folders - TODO enable folders to work well
+		[[ -d "$conf" ]] && { echo "Skipping $conf"; continue; }
+		# Ignore .x files unless explicit
+		[[ "$conf" == *"/home/.x"* && "$1" != "x" ]] \
+			&& { echo "Skipping $conf"; continue; }
+		# Link files
+		ln -s "$conf" && echo "ln: successfully linked $conf"
 	done
 
-	# Temporary fix until I need to add multiple non-root configs
-	ln -s "$endPoint/_CONFIG/home/.config/vimrc" "$HOME/.config/vimrc" && echo "ln: successfully linked vimrc config"
+	# Temporary fix
+	if [[ "$1" == "v" ]]; then
+	  ln -s "$endPoint/_CONFIG/home/.config/vimrc" ".config/vimrc" && \
+	    echo "ln: successfully linked vimrc file"
+	fi
+
 	cd -
 }
 

@@ -2,9 +2,6 @@
 cd ~
 
 #export XAUTHORITY="$HOME/.temp/Xauthority"
-export HISTFILE="$HOME/.temp/bash_history"
-
-export VIMINIT="source $HOME/.config/vimrc"
 
 #xset +fp /usr/share/fonts/gnu-free
 xset +fp /usr/share/fonts/100dpi
