@@ -11,7 +11,7 @@ function cmkdir {
 	mkdir $1; cd $1
 }
 
-function clean {
+function quiet {
 	[[ -n $1 ]] || return
 	$@ &> /dev/null &
 	disown
@@ -22,6 +22,8 @@ function unique {
 	# Not by best but it does what it's supposed to
 	tac "$1" | cat -n | sed -e 's/^ *//g' | sort -u -k 2 | sort -r -g | cut -f 2-
 }
+
+alias ad="$endPoint/Misc/command_repeater.sh"
 
 # ---------------------------------
 # Utilities
