@@ -17,6 +17,12 @@ function clean {
 	disown
 }
 
+function unique {
+	# $1 = some filename
+	# Not by best but it does what it's supposed to
+	tac "$1" | cat -n | sed -e 's/^ *//g' | sort -u -k 2 | sort -r -g | cut -f 2-
+}
+
 # ---------------------------------
 # Utilities
 function gits { git status; }
