@@ -24,6 +24,7 @@ function unique {
 }
 
 alias ad="$endPoint/Misc/command_repeater.sh"
+alias ads="$endPoint/Misc/command_scheduler.sh"
 
 # ---------------------------------
 # Utilities
