@@ -11,5 +11,3 @@ PS1+="\[${colWhi}\]\n╚═══[ \[${colGray}\]";
 export PS1;
 
 LESSHISTFILE=/dev/null
-
-# source "[INSERT ENDPOINT DIR]/endPoint/hook.sh"

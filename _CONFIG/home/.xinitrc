@@ -4,7 +4,7 @@ cd ~
 #export XAUTHORITY="$HOME/.temp/Xauthority"
 export HISTFILE="$HOME/.temp/bash_history"
 
-export VIMINIT="source $HOME/.config/vim/vimrc"
+export VIMINIT="source $HOME/.config/vimrc"
 
 #xset +fp /usr/share/fonts/gnu-free
 xset +fp /usr/share/fonts/100dpi
@@ -15,7 +15,7 @@ function get_date { date +"[%a %b %d %Y] %T"; }
 function get_power { echo $( printf %02d $(cat /sys/class/power_supply/BAT0/capacity) ) ; }
 function get_state { [[ $(cat /sys/class/power_supply/AC/online) -eq 1 ]] && echo "↑" || echo "↓" ; }
 
-function get_cpu { 
+function get_cpu {
 	top -b -n1 -p 1 | fgrep "Cpu(s)" | tail -1 | \
 awk -F'id,' -v prefix="$prefix" '{ split($1, vs, ","); \
 v=vs[length(vs)]; sub("%", "", v); printf "%s%.2d%%\n", prefix, 100 - v }' ; }
@@ -45,7 +45,7 @@ function on {
         sleep 1
         xrandr --output VGA1 --auto --right-of LVDS1; ~/.fehbg
 }
-
 on &
 
+xbindkeys
 exec dwm

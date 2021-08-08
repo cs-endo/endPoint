@@ -1,0 +1,24 @@
+########################
+
+# AUDIO
+## Increase volume
+"pactl set-sink-volume @DEFAULT_SINK@ +5000"
+   XF86AudioRaiseVolume
+## Decrease volume
+"pactl set-sink-volume @DEFAULT_SINK@ -5000"
+   XF86AudioLowerVolume
+## Mute volume
+"pactl set-sink-mute @DEFAULT_SINK@ toggle"
+   XF86AudioMute
+
+########################
+
+# SYSTEM
+## Lock computer - Dedicated button
+"slock"
+   XF86ScreenSaver
+## Lock computer - Win-L
+"slock"
+   Mod4 + l
+
+########################

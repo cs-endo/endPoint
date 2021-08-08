@@ -1,4 +1,5 @@
 #!/bin/bash
+# Add to .bashrc - source "[INSERT ENDPOINT DIR]/endPoint/hook.sh"
 
 # ------ Export file location
 export endPoint=$(dirname -- "$(readlink -f -- "$BASH_SOURCE")")

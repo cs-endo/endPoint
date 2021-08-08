@@ -2,7 +2,7 @@
 
 # ---------------------------------
 # Terminal
-function refresh { source $HOME/.bash_profile; }
+function refresh { source $HOME/.bashrc; }
 function la { ls -lah; }
 function ra { ranger; }
 
@@ -21,6 +21,17 @@ function unique {
 	# $1 = some filename
 	# Not by best but it does what it's supposed to
 	tac "$1" | cat -n | sed -e 's/^ *//g' | sort -u -k 2 | sort -r -g | cut -f 2-
+}
+
+function link_config {
+	cd $HOME
+	for conf in "$endPoint/_CONFIG/home/".*; do
+		[[ -d "$conf" ]] || { ln -s "$conf" && echo "ln: successfully linked $conf"; }
+	done
+
+	# Temporary fix until I need to add multiple non-root configs
+	ln -s "$endPoint/_CONFIG/home/.config/vimrc" "$HOME/.config/vimrc" && echo "ln: successfully linked vimrc config"
+	cd -
 }
 
 alias ad="$endPoint/Misc/command_repeater.sh"
