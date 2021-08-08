@@ -25,7 +25,7 @@ function unique {
 
 function link_config {
 	# $1 = 'x' to enable x file linking
-	# $1 = 'v' to enable vim file linking (temp)
+	# $1 = 's' to enable vim and ranger config
 	cd $HOME
 	for conf in "$endPoint/_CONFIG/home/".*; do
 		# Ignore folders - TODO enable folders to work well
@@ -38,9 +38,11 @@ function link_config {
 	done
 
 	# Temporary fix
-	if [[ "$1" == "v" ]]; then
-	  ln -s "$endPoint/_CONFIG/home/.config/vimrc" ".config/vimrc" && \
-	    echo "ln: successfully linked vimrc file"
+	if [[ "$1" == "s" ]]; then
+	  ln -s "$endPoint/_CONFIG/home/.config/vimrc" \
+	    ".config/vimrc" && echo "ln: successfully linked vim config"
+	  ln -s "$endPoint/_CONFIG/home/.config/ranger/rc.conf" \
+	    ".config/ranger/rc.conf" && echo "ln: successfully linked ranger config"
 	fi
 
 	cd -
