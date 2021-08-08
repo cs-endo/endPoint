@@ -48,6 +48,14 @@ function link_config {
 	cd -
 }
 
+function regit {
+        cd "$endPoint/.."
+        git clone https://github.com/cs-499243/endPoint.git
+        refresh
+        cd -
+}
+
+
 alias ad="$endPoint/Misc/command_repeater.sh"
 alias ads="$endPoint/Misc/command_scheduler.sh"
 
