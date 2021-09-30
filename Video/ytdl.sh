@@ -11,6 +11,7 @@ function ytdlConf {
 ["a"]="-x --audio-format mp3" )
 
 	declare -A dictFileName=( \
+["q"]="/tmp/video.mp4"
 ["tx"]="%(title)s.%(ext)s" \
 ["ptx"]="%(playlist_index)3d-%(title)s.%(ext)s" \
 ["utx"]="%(upload_date)s_%(title)s.%(ext)s" )
@@ -35,9 +36,11 @@ function ytdlConf {
 }
 
 function youtube	{ ytdlConf v tx $@; }
+function youtubeTMP	{ ytdlConf v360 q $@; }
 function youtube480	{ ytdlConf v480 tx $@; }
 function youtube480GT   { ytdlConf v720 ptx $@; }
 function youtube720	{ ytdlConf v720 tx $@; }
 function youtubeA	{ ytdlConf a tx $@; }
+function youtubeAGT	{ ytdlConf a ptx $@; }
 
 function twitch		{ ytdlConf v360 utx $@ || ytdlConf V utx $@; }

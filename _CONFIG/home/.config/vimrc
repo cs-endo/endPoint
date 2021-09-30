@@ -2,6 +2,11 @@ syntax on
 set number
 set showcmd
 set wildmenu
+set nowrap
 
 let skip_defaults=1
 set viminfo=""
+
+set cursorline
+hi cursorline cterm=none term=none 
+highlight CursorLine guibg=#303000 ctermbg=234

@@ -29,5 +29,4 @@ done
 
 echo 'cd "$basePwd"' >> "$comFile"
 
-bash "$comFile"
-rm "$comFile"
+bash "$comFile" && rm "$comFile"

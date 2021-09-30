@@ -3,12 +3,13 @@
 # ---------------------------------
 # Terminal
 function refresh { source $HOME/.bash_profile; }
-function la { ls -lah; }
+function la { ls -lah $@; }
+function lc { ls -1 $@; }
 function ra { ranger; }
 
 function cmkdir {
 	[[ -n $1 ]] || return
-	mkdir $1; cd $1
+	mkdir "$1"; cd "$1"
 }
 
 function quiet {
@@ -89,6 +90,7 @@ function sortSSH {
 # Kept as aliases - will likely not be repeated
 alias begin="startx"
 alias end="shutdown now"
+alias update="sudo pacman -Syyu"
 
 function monitor {
         xrandr --output VGA1 --off
