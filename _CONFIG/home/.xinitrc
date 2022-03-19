@@ -34,15 +34,10 @@ while true; do
         menuText+="SSD:`get_dperc sda4 15` - "
         menuText+="`get_date`"
         xsetroot -name "$menuText"
-        sleep 1
+        sleep 0.8
 done &
 
-function on {
-        xrandr --output VGA1 --off
-        sleep 1
-        xrandr --output VGA1 --auto --right-of LVDS1; ~/.fehbg
-}
-on &
-
+xrandr --output VGA1 --off
 xbindkeys
+
 exec dwm
