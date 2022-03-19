@@ -14,3 +14,8 @@ set cursorline
  highlight CursorLine guibg=#303000 ctermbg=234
 
 set tabstop=4
+
+
+call plug#begin('~/.vim/plugged')
+Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
+call plug#end()

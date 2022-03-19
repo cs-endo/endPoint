@@ -16,12 +16,11 @@ function get_branch {
 	[[ -z $(git diff --cached --name-only) ]] || col=$colWarn
 	[[ -z $(git diff --name-only) ]] || col=$colAlert
 
-	echo ${branch:+"-${col} $branch ${colReset}"}
+	echo ${branch:+":${col}$branch${colReset}"}
 }
 
-PS1="\[${colWhi}\]\n╔═══[ \[${colMain}\]\u@\h - \[${HOME}\]";
-PS1+="\[${colWhi}\]\n║ \[${colGray}\]\t - \[${SHELL}\] \$(get_branch)";
-PS1+="\[${colWhi}\]\n║ \[${colGray}\]\w";
+PS1="\[${colWhi}\]\n╔═══[ \[${colMain}\]\u@\h\[${colGray}\]:\[${SHELL}\]\$(get_branch)"
+PS1+="\[${colWhi}\]\n║ \[${colGray}\]\t [\w]";
 PS1+="\[${colWhi}\]\n╚═══[ \[${colReset}\]";
 export PS1;
 
