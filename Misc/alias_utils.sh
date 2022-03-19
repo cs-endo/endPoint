@@ -4,9 +4,12 @@ alias ad="$endPoint/Misc/command_repeater.sh"
 alias ads="$endPoint/Misc/command_scheduler.sh"
 alias begin="startx"
 alias end="shutdown now"
+alias gita="git add *"
 alias gits="git status"
 alias gitd="git diff"
 alias gitdc="git diff --cached"
+alias gitp="git push origin master"
+alias gitP="git push origin main"
 alias la="ls -lah"
 alias lat="ls -lahrt"
 alias lc="ls -1"
@@ -32,7 +35,7 @@ function quiet {
 }
 
 function gitc { git commit -m "$1"; }
-function gitca { git commit -m --amend "$1"; }
+function gitca { git commit --amend -m "$1"; }
 
 ##################################
 ### HACKS
