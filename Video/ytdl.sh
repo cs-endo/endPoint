@@ -25,7 +25,7 @@ function ytdlConf {
 	# If no URL given, print the command otherwise executed
 	#  -i		Ignore errors (useful for imperfect playlists)
 	#  --http-...	Workaround for issue with speed dropping to 50kb
-	baseCom="youtube-dl -i --http-chunk-size 15M"
+	baseCom="${YTDL:-"youtube-dl"} -i --http-chunk-size 15M"
 
 	# Unfortunately, this is needed so both forms work AND have the same filenames
 	if [[ -z $1 ]]; then

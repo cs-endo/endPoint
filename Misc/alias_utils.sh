@@ -1,11 +1,24 @@
 #!/bin/bash
 
-# ---------------------------------
-# Terminal
-function refresh { source $HOME/.bash_profile; }
-function la { ls -lah $@; }
-function lc { ls -1 $@; }
-function ra { ranger; }
+alias ad="$endPoint/Misc/command_repeater.sh"
+alias ads="$endPoint/Misc/command_scheduler.sh"
+alias begin="startx"
+alias end="shutdown now"
+alias gits="git status"
+alias gitd="git diff"
+alias gitdc="git diff --cached"
+alias la="ls -lah"
+alias lat="ls -lahrt"
+alias lc="ls -1"
+alias lynxc="$endpoint/Network/lynxc.sh"
+alias price_btc="curl rate.sx/btc"
+alias price_eth="curl rate.sx/eth"
+alias price_xmr="curl rate.sx/xmr"
+alias pul="pulsemixer"
+alias ra="ranger"
+alias refresh="source $HOME/.bash_profile"
+alias update="sudo pacman -Syyu"
+alias weather="curl wttr.in?format=v2"
 
 function cmkdir {
 	[[ -n $1 ]] || return
@@ -18,10 +31,16 @@ function quiet {
 	disown
 }
 
-function unique {
-	# $1 = some filename
-	# Not by best but it does what it's supposed to
-	tac "$1" | cat -n | sed -e 's/^ *//g' | sort -u -k 2 | sort -r -g | cut -f 2-
+function gitc { git commit -m "$1"; }
+function gitca { git commit -m --amend "$1"; }
+
+##################################
+### HACKS
+##################################
+
+function archive {
+	# $1 = archive title
+	7z a -p -mhe=on "$1" *
 }
 
 function link_config {
@@ -49,33 +68,6 @@ function link_config {
 	cd -
 }
 
-function regit {
-        cd "$endPoint/.."
-        git clone https://github.com/cs-499243/endPoint.git
-        refresh
-        cd -
-}
-
-
-alias ad="$endPoint/Misc/command_repeater.sh"
-alias ads="$endPoint/Misc/command_scheduler.sh"
-
-# ---------------------------------
-# Utilities
-function gits { git status; }
-function gitd { git diff; }
-function gitdc { git diff --cached; }
-function gitc {
-	# $1 = message (put between "")
-	git commit -m "$1"
-}
-
-function archive {
-	# $1 = archive title
-	# TODO Make this auto set to the date
-	7z a -p -mhe=on $1 *
-}
-
 function sortSSH {
 	# If a key needs a password, echo manual command
 	eval "$(ssh-agent -s)"
@@ -84,36 +76,38 @@ function sortSSH {
 	done
 }
 
-# ---------------------------------
-# System
+function autolatex {
+	file="${1%.*}"
+	mkdir TeXoutput; pdflatex -halt-on-error -output-directory=TeXoutput "$file.tex"
+	zathura "TeXoutput/$file.pdf" &
+ 	echo "$file.tex" | entr pdflatex -halt-on-error -output-directory=TeXoutput "$file.tex"
+}
 
-# Kept as aliases - will likely not be repeated
-alias begin="startx"
-alias end="shutdown now"
-alias update="sudo pacman -Syyu"
+function gpp {
+	while :; do
+		ls | entr -d -s "clear; g++ -o .out.o $(ls -rt | tail -n 1) && ./.out.o"
+	done
+}
 
 function monitor {
-        xrandr --output VGA1 --off
+	xrandr --output VGA1 --off
+	[[ -n $1 ]] && return # Give any argument, to turn off monitor
+
 	sleep 1
-        if [[ -n $(xrandr | grep "VGA1 connected") ]]; then
-                xrandr --output VGA1 --auto --right-of LVDS1; ~/.fehbg
-        fi
+
+	if [[ -n $(xrandr | grep "VGA1 connected") ]]; then
+		xrandr --output VGA1 --auto --right-of LVDS1; ~/.fehbg
+    fi
 }
 
 function get_power {
 	echo $( printf %02d $(cat /sys/class/power_supply/BAT0/capacity) )
 }
 
-# ---------------------------------
-# Misc
-function weather { curl wttr.in?format=v2; }
-function stocks { curl rate.sx/$1; }
-
-# ---------------------------------
-# Music
-function pul { pulsemixer; }
-
 function mp {
+		mount_state=$(find ${music_dir:-"$HOME/Music"} -xtype l)
+		[[ -n $mount_state ]] && { echo "Error - Music not fully mounted"; return 1; }
+
         if [[ -z $(ps ch -C mpd) ]]; then
                 mpd &> /dev/null
                 mpc update
@@ -125,35 +119,3 @@ function mp {
         ncmpcpp --quiet
 }
 
-# ---------------------------------
-
-
-
-
-
-# ---------------------------------
-# ARCHIVE
-
-# function autolatex {
-#	mkdir TeXoutput; pdflatex -halt-on-error -output-directory=TeXoutput "$1.tex"
-#	zathura "TeXoutput/$1.pdf" &
-# 	echo "$1.tex" | entr pdflatex -halt-on-error -output-directory=TeXoutput "$1.tex"
-#}
-
-# function wifi {
-#	echo "Changing wifi state - will need to confirm sudo"
-#	[[ $1 -eq 1 ]] && wifiOp="up" || wifiOp="down"
-#	sudo ifconfig wlp3so $wifiOp && echo "WiFi: $wifiOp"
-#}
-
-# function signal_strength {
-# 	echo -n "Signal Strength Monitor - Type time: "; read tLength
-#	echo
-#	while :; do
-#	echo -n -e "\e[1A"
-#
-#	iwconfig wlan0 | grep Signal | cut -d' ' -f14-
-#	sleep $tLength; done
-#}
-
-# ---------------------------------
