@@ -3,6 +3,7 @@ colReset=$(tput sgr0);
 colMain=$(tput setaf 10);
 colAlert=$(tput setaf 196);
 colWarn=$(tput setaf 202);
+colSafe=$(tput setaf 014);
 colGray=$(tput setaf 250);
 colWhi=$(tput setaf 15);
 
@@ -10,6 +11,8 @@ function get_branch {
 	[[ -d .git ]] || return
 
 	branch=$(git branch | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/')
+
+	col=$colSafe
 	[[ -z $(git diff --cached --name-only) ]] || col=$colWarn
 	[[ -z $(git diff --name-only) ]] || col=$colAlert
 
