@@ -15,6 +15,7 @@ set cursorline
 
 set tabstop=4
 
+set visualbell
 
 call plug#begin('~/.vim/plugged')
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }

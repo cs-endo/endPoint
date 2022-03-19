@@ -3,7 +3,6 @@
 alias ad="$endPoint/Misc/command_repeater.sh"
 alias ads="$endPoint/Misc/command_scheduler.sh"
 alias begin="startx"
-alias end="shutdown now"
 alias gita="git add *"
 alias gits="git status"
 alias gitd="git diff"
@@ -32,6 +31,10 @@ function quiet {
 	[[ -n $1 ]] || return
 	$@ &> /dev/null &
 	disown
+}
+
+function end {
+	shutdown now || sudo shutdown now
 }
 
 function gitc { git commit -m "$1"; }
