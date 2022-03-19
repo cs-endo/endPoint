@@ -7,9 +7,8 @@ colSafe=$(tput setaf 014);
 colGray=$(tput setaf 250);
 colWhi=$(tput setaf 15);
 
-function get_branch { 
-	[[ -d .git ]] || return
-
+function get_branch {
+	git branch &> /dev/null || return
 	branch=$(git branch | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/')
 
 	col=$colSafe
