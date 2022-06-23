@@ -35,12 +35,19 @@ function ytdlConf {
 	fi
 }
 
+# v = Video
+# A = Audio
+# ..TMP = store in temporary folder - useful for watching immediately from download
+# ..GT = download playlist and name videos numerically
+# ..p = do post-processing instead of downloading a given quality/stream
 function youtube	{ ytdlConf v tx $@; }
 function youtubeTMP	{ ytdlConf v360 q $@; }
 function youtube480	{ ytdlConf v480 tx $@; }
-function youtube480GT   { ytdlConf v720 ptx $@; }
+function youtube720GT   { ytdlConf v720 ptx $@; }
 function youtube720	{ ytdlConf v720 tx $@; }
+function youtube1080	{ ytdlConf v1080 tx $@; }
 function youtubeA	{ ytdlConf a tx $@; }
+function youtubeAp	{ ytdlConf a360 tx $@; }
 function youtubeAGT	{ ytdlConf a ptx $@; }
 
 function twitch		{ ytdlConf v360 utx $@ || ytdlConf V utx $@; }

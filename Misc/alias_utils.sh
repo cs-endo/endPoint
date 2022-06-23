@@ -3,6 +3,8 @@
 alias ad="$endPoint/Misc/command_repeater.sh"
 alias ads="$endPoint/Misc/command_scheduler.sh"
 alias begin="startx"
+alias exi="exit"
+alias end="shutdown now"
 alias gita="git add *"
 alias gits="git status"
 alias gitd="git diff"
@@ -12,7 +14,7 @@ alias gitget="git pull origin master"
 alias la="ls -lah"
 alias lat="ls -lahrt"
 alias lc="ls -1"
-alias lynxc="$endpoint/Network/lynxc.sh"
+alias lynxc="$endPoint/Network/lynxc.sh"
 alias price_btc="curl rate.sx/btc"
 alias price_eth="curl rate.sx/eth"
 alias price_xmr="curl rate.sx/xmr"
@@ -33,8 +35,11 @@ function quiet {
 	disown
 }
 
-function end {
-	shutdown now || sudo shutdown now
+function reload_wifi {
+	wID=$(nmcli c | grep 'wifi' | head -n 1 | awk '{print $(NF-2)}')
+	nmcli c down $wID
+	sleep 1
+	nmcli c up $wID
 }
 
 function gitc { git commit -m "$1"; }
@@ -96,13 +101,16 @@ function gpp {
 }
 
 function monitor {
-	xrandr --output VGA1 --off
-	[[ -n $1 ]] && return # Give any argument, to turn off monitor
+	# $1 = Monitor type
+	[[ -z $1 ]] && { xrandr; return; }
+	xrandr --output $1 --off
+	# $2 = Some argument to turn off monitor
+	[[ -n $2 ]] && return
 
 	sleep 1
 
-	if [[ -n $(xrandr | grep "VGA1 connected") ]]; then
-		xrandr --output VGA1 --auto --right-of LVDS1; ~/.fehbg
+	if [[ -n $(xrandr | grep "$1 connected") ]]; then
+		xrandr --output $1 --auto --right-of LVDS1; ~/.fehbg
     fi
 }
 
