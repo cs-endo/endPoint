@@ -44,6 +44,7 @@ set statusline+=\ [%F]\
 set statusline+=%=
 set statusline+=\ (%l,%c)\ -\ [%{WordCount()}]\ 
 
+set visualbell
 
 """" VIM PLUGINS
 call plug#begin('~/.vim/plugged')
