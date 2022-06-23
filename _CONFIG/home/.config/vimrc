@@ -44,7 +44,8 @@ set statusline+=\ [%F]\
 set statusline+=%=
 set statusline+=\ (%l,%c)\ -\ [%{WordCount()}]\ 
 
-set visualbell
+" set visualbell " This is ocassionally useful on systems that refuse to
+" disable the bell
 
 """" VIM PLUGINS
 call plug#begin('~/.vim/plugged')
